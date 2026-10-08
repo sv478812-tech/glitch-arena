@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-cyber-bg: #0b0f19;
+  --color-cyber-card: #0f172a;
+  --color-cyber-cyan: #06b6d4;
+  --color-cyber-purple: #a855f7;
+  --color-cyber-amber: #f59e0b;
+  --color-cyber-red: #ef4444;
+}
+
+body {
+  background-color: #0b0f19;
+  color: #e2e8f0;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Cyberpunk Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+  border-color: #06b6d4;
+}
+
+/* Neon Glow Effects */
+.neon-glow-cyan {
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.35);
+}
+.neon-glow-purple {
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.35);
+}
+.neon-glow-red {
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
+}
+.neon-glow-amber {
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.35);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 20px rgba(6, 182, 212, 0.4);
+}
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.4);
+}
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+/* CRT Scanlines Overlay */
+.crt-overlay {
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), 
+  linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+/* Animated Glitch Text */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip: rect(0, 0, 0, 0);
+}
+.glitch-text:hover::before {
+  left: -2px;
+  text-shadow: 2px 0 #06b6d4;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+.glitch-text:hover::after {
+  left: 2px;
+  text-shadow: -2px 0 #ec4899;
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip: rect(20px, 9999px, 15px, 0); }
+  25% { clip: rect(65px, 9999px, 70px, 0); }
+  50% { clip: rect(10px, 9999px, 40px, 0); }
+  75% { clip: rect(80px, 9999px, 85px, 0); }
+  100% { clip: rect(30px, 9999px, 60px, 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip: rect(50px, 9999px, 55px, 0); }
+  25% { clip: rect(15px, 9999px, 20px, 0); }
+  50% { clip: rect(85px, 9999px, 90px, 0); }
+  75% { clip: rect(35px, 9999px, 40px, 0); }
+  100% { clip: rect(70px, 9999px, 75px, 0); }
+}
+
+/* Screen shake animation */
+@keyframes screenshake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.shake-screen {
+  animation: screenshake 0.4s ease-in-out;
+}
